@@ -65,3 +65,52 @@ php artisan key:generate
 
 Acesse o projeto
 [http://localhost:8989](http://localhost:8989)
+
+
+Dentro do container app
+
+Para criar controller
+```
+php artisan make:controller nomeController
+```
+
+Para criar controller com padrao CRUD
+```
+php artisan make:controller nomeController --resource
+```
+
+Para criar model
+```
+php artisan make:model Model
+```
+
+Para criar model com migration
+```
+php artisan make:model Model --migration
+```
+
+Para criar uma nova migration
+```
+php artisan make:migration create_alguma_table
+```
+
+Para rodar as migrations
+```
+php artisan migrate
+```
+
+Para ver o status
+```
+php artisan migrate:status
+```
+
+Para listar rotas
+```
+php artisan route:list
+```
+
+Para forcar limpar cache das rotas e recompilar a estrutura de rotas
+```
+php artisan route:clear
+```
+
