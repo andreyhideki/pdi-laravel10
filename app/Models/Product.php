@@ -10,6 +10,11 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected  $fillable = [
+        'subject',
+        'body'
+    ];
+
     /**
      * The table associated with the model.
      *
@@ -53,10 +58,25 @@ class Product extends Model
      */
     public $quantidade;
 
+    public $description;
+
     public function setNome($value)
     {
         $this->attributes['nome'] = $value;
     }
 
+    public function setPreco($value)
+    {
+        $this->attributes['preco'] = $value;
+    }
+
+    public function setQuantidade($value)
+    {
+        $this->attributes['quantidade'] = $value;
+    }
     
+    public function setDescription($value)
+    {
+        $this->attributes['description'] = $value;
+    }
 }

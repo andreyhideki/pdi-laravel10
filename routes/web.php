@@ -1,6 +1,6 @@
 <?php
 
-// use App\Http\Controllers\api\{ProductController};
+use App\Http\Controllers\api\{ProductController};
 use App\Http\Controllers\Pedido\PedidoController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +25,8 @@ Route::get('ping', function(){
 });
 
 Route::get('pedido', [PedidoController::class, 'index']);
-
-// Route::get('product', [ProductController::class, 'index'])->name();
+//Route::get('product', [ProductController::class, 'index'])->name();
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+//Route::put('/products', [ProductController::class, 'store'])->name('products.store');

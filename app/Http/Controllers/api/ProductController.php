@@ -3,16 +3,23 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Product $product)
     {
-        //
+        $products = $product->all();
+        dd($products);
+        dd($products);
+
+        return var_dump($products);
     }
 
     /**
@@ -20,15 +27,28 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        //$csrfToken = Session::token();
+        $csrfToken = csrf_token();
+        
+        dd('Redireciona para a pagina de cadastro: '.$csrfToken);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $produto)
     {
-        //
+        $csrfToken = csrf_token();
+        
+        $req = $request->all();
+        
+        $produto->setNome($req['nome']);
+        $produto->setPreco($req['preco']);
+        $produto->setQuantidade($req['quantidade']);
+        $produto->setDescription($req['description']);
+        $produto->save();
+        
+        dd('Salvo com sucesso! '.$produto);
     }
 
     /**
