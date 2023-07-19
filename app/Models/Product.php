@@ -27,7 +27,7 @@ class Product extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'product_id';
+    protected $primaryKey = 'id';
 
     /**
      * Indicates if the model's ID is auto-incrementing.

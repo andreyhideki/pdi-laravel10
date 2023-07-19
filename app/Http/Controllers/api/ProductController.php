@@ -17,7 +17,6 @@ class ProductController extends Controller
     {
         $products = $product->all();
         dd($products);
-        dd($products);
 
         return var_dump($products);
     }
@@ -54,9 +53,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Product $produto)
     {
-        //
+        //Product::find nao funciona
+        if (!$produto = Product::where('id', $id)->first()){
+            dd('Não encontrou');
+        }
+        dd($produto);
     }
 
     /**
@@ -70,9 +73,35 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, Product $produto)
     {
-        //
+        $csrfToken = csrf_token();
+        //dd('AEEEEE'.$request);
+
+        if (!$produto = Product::where('id', $id)->first()){
+            dd('Não encontrou');
+        }
+
+        //Nao funcionou
+        // $produto->update($request->only([
+        //     'nome', 
+        //     'preco',
+        //     'quantidade',
+        //     'description'
+        // ]));
+        
+        $req = $request->all();
+
+        dd($request->input('nome'));
+        die();
+        $produto->setNome($req['nome']);
+        $produto->setPreco($req['preco']);
+        $produto->setQuantidade($req['quantidade']);
+        $produto->setDescription($req['description']);
+        $produto->save();
+
+
+        dd('Atualizou'.$produto);
     }
 
     /**

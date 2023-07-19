@@ -29,4 +29,5 @@ Route::get('pedido', [PedidoController::class, 'index']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-//Route::put('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
