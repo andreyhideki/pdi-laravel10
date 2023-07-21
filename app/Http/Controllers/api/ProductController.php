@@ -73,7 +73,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, Product $produto)
+    public function update(Request $request, $id, Product $produto)
     {
         $csrfToken = csrf_token();
         //dd('AEEEEE'.$request);
@@ -81,27 +81,26 @@ class ProductController extends Controller
         if (!$produto = Product::where('id', $id)->first()){
             dd('Não encontrou');
         }
-
-        //Nao funcionou
-        // $produto->update($request->only([
-        //     'nome', 
-        //     'preco',
-        //     'quantidade',
-        //     'description'
-        // ]));
         
-        $req = $request->all();
+        
+        dd($request['nome']);
+        $produto->setNome('aaa');
+        dd($produto);
+        //$product = Product::findOrFail($id);
+        $product = $produto; 
+        dd($product);
 
-        dd($request->input('nome'));
-        die();
-        $produto->setNome($req['nome']);
-        $produto->setPreco($req['preco']);
-        $produto->setQuantidade($req['quantidade']);
-        $produto->setDescription($req['description']);
-        $produto->save();
+        $product->nome = $request->input('nome');
+        $product->preco = $request->input('preco');
+        $product->quantidade = $request->input('quantidade');
+        $product->description = $request->input('description');
+        $product->save();
 
-
-        dd('Atualizou'.$produto);
+        // Responda com o produto atualizado ou uma resposta de sucesso
+        return response()->json(['message' => 'Produto atualizado com sucesso', 
+            'data' => $product
+        ], 200);
+        
     }
 
     /**
