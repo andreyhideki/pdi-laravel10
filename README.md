@@ -149,3 +149,6 @@ php artisan make:model Flight --all
 # Generate a pivot model...
 php artisan make:model Member --pivot
 php artisan make:model Member -p
+
+# executar o db seed
+php artisan db:seed
