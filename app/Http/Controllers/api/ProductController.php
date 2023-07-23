@@ -75,32 +75,28 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id, Product $produto)
     {
-        $csrfToken = csrf_token();
-        //dd('AEEEEE'.$request);
-
         if (!$produto = Product::where('id', $id)->first()){
             dd('Não encontrou');
         }
         
+        //para pegar valores precisa utilizar o x-www-form-urlencoded ao inves de form-data
+        //dd($request['nome']);
+        //dd($request->input('nome'));
         
-        dd($request['nome']);
-        $produto->setNome('aaa');
-        dd($produto);
-        //$product = Product::findOrFail($id);
-        $product = $produto; 
-        dd($product);
-
-        $product->nome = $request->input('nome');
-        $product->preco = $request->input('preco');
-        $product->quantidade = $request->input('quantidade');
-        $product->description = $request->input('description');
-        $product->save();
+        $produto->setNome($request->input('nome'));
+        $produto->setPreco($request->input('preco'));
+        $produto->setQuantidade($request->input('quantidade'));
+        $produto->setDescription($request->input('description'));
+        $produto->save();
 
         // Responda com o produto atualizado ou uma resposta de sucesso
         return response()->json(['message' => 'Produto atualizado com sucesso', 
-            'data' => $product
+            'data' => $produto
         ], 200);
-        
+    }
+
+    public function atualiza(Request $req, $id){
+        dd('ATUALIZOU = '.$id.$req->input('nome').' - REQ: '.$req);
     }
 
     /**

@@ -31,3 +31,5 @@ Route::get('/products/create', [ProductController::class, 'create'])->name('prod
 Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('products.update');
+//Route::get('/api/products/{id}', [ProductController::class, 'atualiza'])->name('products.atualiza');
+Route::put('/api/products/{id}', [ProductController::class, 'atualiza'])->name('products.atualiza');
