@@ -152,3 +152,6 @@ php artisan make:model Member -p
 
 # executar o db seed
 php artisan db:seed
+
+# Criar validacao via request
+php artisan make:request ClasseRequest
