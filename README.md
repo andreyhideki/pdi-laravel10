@@ -50,6 +50,19 @@ Acesse o container app
 docker-compose exec app bash
 ```
 
+#limpa o cache docker
+docker system prune
+docker system prune -f
+
+#remover apenas imagens não utilizados
+docker container prune
+
+#remover apenas volumes não utilizados
+docker volume prune
+
+#remover apenas redes não utilizado
+docker network prune
+
 
 Instale as dependências do projeto
 ```sh
